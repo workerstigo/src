@@ -1,0 +1,86 @@
+[0.000000] (-) TimerEvent: {}
+[0.000925] (-) JobUnselected: {'identifier': 'esp_bridge'}
+[0.001507] (-) JobUnselected: {'identifier': 'landmarks_to_occupancy'}
+[0.001669] (-) JobUnselected: {'identifier': 'my_nav2_bringup'}
+[0.001827] (map_location_switch) JobQueued: {'identifier': 'map_location_switch', 'dependencies': OrderedDict()}
+[0.004188] (map_location_switch) JobStarted: {'identifier': 'map_location_switch'}
+[0.099397] (-) TimerEvent: {}
+[0.293973] (-) TimerEvent: {}
+[0.394898] (-) TimerEvent: {}
+[0.495502] (-) TimerEvent: {}
+[0.597078] (-) TimerEvent: {}
+[0.698329] (-) TimerEvent: {}
+[0.799086] (-) TimerEvent: {}
+[0.899803] (-) TimerEvent: {}
+[1.000686] (-) TimerEvent: {}
+[1.101311] (-) TimerEvent: {}
+[1.203385] (-) TimerEvent: {}
+[1.305543] (-) TimerEvent: {}
+[1.406122] (-) TimerEvent: {}
+[1.507553] (-) TimerEvent: {}
+[1.608533] (-) TimerEvent: {}
+[1.709670] (-) TimerEvent: {}
+[1.811097] (-) TimerEvent: {}
+[1.876892] (map_location_switch) Command: {'cmd': ['/home/user/.espressif/python_env/idf5.4_py3.10_env/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../build/map_location_switch', 'build', '--build-base', '/home/user/ros2_ws/src/build/map_location_switch/build', 'install', '--record', '/home/user/ros2_ws/src/build/map_location_switch/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/user/ros2_ws/src/map_location_switch-main', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'user', 'XDG_SESSION_TYPE': 'x11', 'GIT_ASKPASS': '/usr/share/antigravity/resources/app/extensions/git/dist/askpass.sh', 'IDF_TOOLS_INSTALL_CMD': '/home/user/esp/esp-idf/install.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'ANTIGRAVITY_CLI_ALIAS': 'agy', 'HOME': '/home/user', 'CHROME_DESKTOP': 'antigravity.desktop', 'OLDPWD': '/home/user/ros2_ws/src', 'TERM_PROGRAM_VERSION': '1.107.0', 'DESKTOP_SESSION': 'ubuntu', 'NVM_BIN': '/home/user/.nvm/versions/node/v24.13.0/bin', 'NVM_INC': '/home/user/.nvm/versions/node/v24.13.0/include/node', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/antigravity.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PAGER': 'cat', 'VSCODE_GIT_ASKPASS_MAIN': '/usr/share/antigravity/resources/app/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/usr/share/antigravity/antigravity', 'MANAGERPID': '1677', 'SYSTEMD_EXEC_PID': '10043', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'ANTIGRAVITY_AGENT': '1', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '46932', 'OPENOCD_SCRIPTS': '/home/user/.espressif/tools/openocd-esp32/v0.12.0-esp32-20241016/openocd-esp32/share/openocd/scripts', 'NVM_DIR': '/home/user/.nvm', 'IM_CONFIG_PHASE': '1', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'user', 'JOURNAL_STREAM': '8:77766', '_': '/home/user/.espressif/python_env/idf5.4_py3.10_env/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'user', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'IDF_DEACTIVATE_FILE_PATH': '/tmp/tmpgbngccajidf_52383', 'FC_FONTATIONS': '1', 'ROS_LOCALHOST_ONLY': '0', 'IDF_PATH': '/home/user/esp/esp-idf', 'WINDOWPATH': '2', 'PATH': '/home/user/esp/esp-idf/components/espcoredump:/home/user/esp/esp-idf/components/partition_table:/home/user/esp/esp-idf/components/app_update:/home/user/.espressif/tools/xtensa-esp-elf-gdb/14.2_20240403/xtensa-esp-elf-gdb/bin:/home/user/.espressif/tools/riscv32-esp-elf-gdb/14.2_20240403/riscv32-esp-elf-gdb/bin:/home/user/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin:/home/user/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin:/home/user/.espressif/tools/esp32ulp-elf/2.38_20240113/esp32ulp-elf/bin:/home/user/.espressif/tools/openocd-esp32/v0.12.0-esp32-20241016/openocd-esp32/bin:/home/user/.local/bin:/home/user/esp/esp-idf/components/espcoredump:/home/user/esp/esp-idf/components/partition_table:/home/user/esp/esp-idf/components/app_update:/home/user/.espressif/tools/xtensa-esp-elf-gdb/14.2_20240403/xtensa-esp-elf-gdb/bin:/home/user/.espressif/tools/riscv32-esp-elf-gdb/14.2_20240403/riscv32-esp-elf-gdb/bin:/home/user/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin:/home/user/.espressif/tools/riscv32-esp-elf/esp-14.2.0_20241119/riscv32-esp-elf/bin:/home/user/.espressif/tools/esp32ulp-elf/2.38_20240113/esp32ulp-elf/bin:/home/user/.espressif/tools/openocd-esp32/v0.12.0-esp32-20241016/openocd-esp32/bin:/home/user/.espressif/python_env/idf5.4_py3.10_env/bin:/home/user/esp/esp-idf/tools:/home/user/.nvm/versions/node/v24.13.0/bin:/opt/ros/humble/bin:/home/user/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/ubuntu:@/tmp/.ICE-unix/10015,unix/ubuntu:/tmp/.ICE-unix/10015', 'INVOCATION_ID': '0e684a3e47d64e0ea8c5713690d86e5f', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'DISPLAY': ':1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'ESP_IDF_VERSION': '5.4', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-ca82d8807e.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/humble', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'IDF_PYTHON_ENV_PATH': '/home/user/.espressif/python_env/idf5.4_py3.10_env', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'IDF_TOOLS_EXPORT_CMD': '/home/user/esp/esp-idf/export.sh', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'GJS_DEBUG_OUTPUT': 'stderr', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/user/ros2_ws/src/build/map_location_switch', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'NVM_CD_FLAGS': '', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/user/ros2_ws/src/build/map_location_switch/prefix_override:/home/user/.espressif/python_env/idf5.4_py3.10_env/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'ESP_ROM_ELF_DIR': '/home/user/.espressif/tools/esp-rom-elfs/20241011/', 'COLCON': '1'}, 'shell': False}
+[1.911279] (-) TimerEvent: {}
+[2.012064] (-) TimerEvent: {}
+[2.112707] (-) TimerEvent: {}
+[2.213388] (-) TimerEvent: {}
+[2.315124] (-) TimerEvent: {}
+[2.321117] (map_location_switch) StderrLine: {'line': b"/home/user/.espressif/python_env/idf5.4_py3.10_env/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'\n"}
+[2.321731] (map_location_switch) StderrLine: {'line': b'  warnings.warn(msg)\n'}
+[2.415288] (-) TimerEvent: {}
+[2.516516] (-) TimerEvent: {}
+[2.616087] (map_location_switch) StdoutLine: {'line': b'running egg_info\n'}
+[2.616568] (-) TimerEvent: {}
+[2.672016] (map_location_switch) StdoutLine: {'line': b'creating ../build/map_location_switch/map_location_switch.egg-info\n'}
+[2.672437] (map_location_switch) StdoutLine: {'line': b'writing ../build/map_location_switch/map_location_switch.egg-info/PKG-INFO\n'}
+[2.673790] (map_location_switch) StdoutLine: {'line': b'writing dependency_links to ../build/map_location_switch/map_location_switch.egg-info/dependency_links.txt\n'}
+[2.674251] (map_location_switch) StdoutLine: {'line': b'writing entry points to ../build/map_location_switch/map_location_switch.egg-info/entry_points.txt\n'}
+[2.674520] (map_location_switch) StdoutLine: {'line': b'writing requirements to ../build/map_location_switch/map_location_switch.egg-info/requires.txt\n'}
+[2.674734] (map_location_switch) StdoutLine: {'line': b'writing top-level names to ../build/map_location_switch/map_location_switch.egg-info/top_level.txt\n'}
+[2.675104] (map_location_switch) StdoutLine: {'line': b"writing manifest file '../build/map_location_switch/map_location_switch.egg-info/SOURCES.txt'\n"}
+[2.717083] (-) TimerEvent: {}
+[2.793364] (map_location_switch) StdoutLine: {'line': b"reading manifest file '../build/map_location_switch/map_location_switch.egg-info/SOURCES.txt'\n"}
+[2.796300] (map_location_switch) StdoutLine: {'line': b"writing manifest file '../build/map_location_switch/map_location_switch.egg-info/SOURCES.txt'\n"}
+[2.797357] (map_location_switch) StdoutLine: {'line': b'running build\n'}
+[2.797642] (map_location_switch) StdoutLine: {'line': b'running build_py\n'}
+[2.799376] (map_location_switch) StdoutLine: {'line': b'creating /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value\n'}
+[2.800115] (map_location_switch) StdoutLine: {'line': b'copying test_value/test_value.py -> /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value\n'}
+[2.800285] (map_location_switch) StdoutLine: {'line': b'copying test_value/__init__.py -> /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value\n'}
+[2.800402] (map_location_switch) StdoutLine: {'line': b'creating /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch\n'}
+[2.801806] (map_location_switch) StdoutLine: {'line': b'copying map_location_switch/map_location_switch.py -> /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch\n'}
+[2.802120] (map_location_switch) StdoutLine: {'line': b'copying map_location_switch/__init__.py -> /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch\n'}
+[2.803121] (map_location_switch) StdoutLine: {'line': b'running install\n'}
+[2.817299] (-) TimerEvent: {}
+[2.835988] (map_location_switch) StdoutLine: {'line': b'running install_lib\n'}
+[2.897570] (map_location_switch) StdoutLine: {'line': b'creating /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value\n'}
+[2.901112] (map_location_switch) StdoutLine: {'line': b'copying /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value/test_value.py -> /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value\n'}
+[2.901514] (map_location_switch) StdoutLine: {'line': b'copying /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value/__init__.py -> /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value\n'}
+[2.901695] (map_location_switch) StdoutLine: {'line': b'creating /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch\n'}
+[2.901806] (map_location_switch) StdoutLine: {'line': b'copying /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch/map_location_switch.py -> /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch\n'}
+[2.901928] (map_location_switch) StdoutLine: {'line': b'copying /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch/__init__.py -> /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch\n'}
+[2.904043] (map_location_switch) StdoutLine: {'line': b'byte-compiling /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value/test_value.py to test_value.cpython-310.pyc\n'}
+[2.911262] (map_location_switch) StdoutLine: {'line': b'byte-compiling /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value/__init__.py to __init__.cpython-310.pyc\n'}
+[2.911975] (map_location_switch) StdoutLine: {'line': b'byte-compiling /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch/map_location_switch.py to map_location_switch.cpython-310.pyc\n'}
+[2.917458] (-) TimerEvent: {}
+[2.922644] (map_location_switch) StdoutLine: {'line': b'byte-compiling /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch/__init__.py to __init__.cpython-310.pyc\n'}
+[2.923623] (map_location_switch) StdoutLine: {'line': b'running install_data\n'}
+[2.923881] (map_location_switch) StdoutLine: {'line': b'creating /home/user/ros2_ws/src/install/map_location_switch/share/ament_index/resource_index/packages\n'}
+[2.924001] (map_location_switch) StdoutLine: {'line': b'copying resource/map_location_switch -> /home/user/ros2_ws/src/install/map_location_switch/share/ament_index/resource_index/packages\n'}
+[2.924107] (map_location_switch) StdoutLine: {'line': b'copying package.xml -> /home/user/ros2_ws/src/install/map_location_switch/share/map_location_switch\n'}
+[2.924205] (map_location_switch) StdoutLine: {'line': b'running install_egg_info\n'}
+[3.005109] (map_location_switch) StdoutLine: {'line': b'Copying ../build/map_location_switch/map_location_switch.egg-info to /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch-0.0.0-py3.10.egg-info\n'}
+[3.013367] (map_location_switch) StdoutLine: {'line': b'running install_scripts\n'}
+[3.017614] (-) TimerEvent: {}
+[3.118828] (-) TimerEvent: {}
+[3.219572] (-) TimerEvent: {}
+[3.309878] (map_location_switch) StdoutLine: {'line': b'Installing map_location_switch script to /home/user/ros2_ws/src/install/map_location_switch/lib/map_location_switch\n'}
+[3.310832] (map_location_switch) StdoutLine: {'line': b'Installing test_value script to /home/user/ros2_ws/src/install/map_location_switch/lib/map_location_switch\n'}
+[3.311857] (map_location_switch) StdoutLine: {'line': b"writing list of installed files to '/home/user/ros2_ws/src/build/map_location_switch/install.log'\n"}
+[3.321354] (-) TimerEvent: {}
+[3.426305] (-) TimerEvent: {}
+[3.448650] (map_location_switch) CommandEnded: {'returncode': 0}
+[3.531631] (-) TimerEvent: {}
+[3.559152] (map_location_switch) JobEnded: {'identifier': 'map_location_switch', 'rc': 0}
+[3.571580] (-) EventReactorShutdown: {}

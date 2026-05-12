@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>i2c_bridge_js</name>
+  <version>0.1.0</version>
+  <description>ROS2 I2C bridge using Node.js</description>
+  <maintainer email="user@example.com">user</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>i2c_interfaces</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

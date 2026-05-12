@@ -1,0 +1,44 @@
+[1.874s] Invoking command in '/home/user/ros2_ws/src/map_location_switch-main': PYTHONPATH=/home/user/ros2_ws/src/build/map_location_switch/prefix_override:/home/user/.espressif/python_env/idf5.4_py3.10_env/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages:${PYTHONPATH} /home/user/.espressif/python_env/idf5.4_py3.10_env/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/map_location_switch build --build-base /home/user/ros2_ws/src/build/map_location_switch/build install --record /home/user/ros2_ws/src/build/map_location_switch/install.log --single-version-externally-managed install_data
+[2.317s] /home/user/.espressif/python_env/idf5.4_py3.10_env/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[2.318s]   warnings.warn(msg)
+[2.612s] running egg_info
+[2.668s] creating ../build/map_location_switch/map_location_switch.egg-info
+[2.668s] writing ../build/map_location_switch/map_location_switch.egg-info/PKG-INFO
+[2.670s] writing dependency_links to ../build/map_location_switch/map_location_switch.egg-info/dependency_links.txt
+[2.670s] writing entry points to ../build/map_location_switch/map_location_switch.egg-info/entry_points.txt
+[2.670s] writing requirements to ../build/map_location_switch/map_location_switch.egg-info/requires.txt
+[2.671s] writing top-level names to ../build/map_location_switch/map_location_switch.egg-info/top_level.txt
+[2.671s] writing manifest file '../build/map_location_switch/map_location_switch.egg-info/SOURCES.txt'
+[2.789s] reading manifest file '../build/map_location_switch/map_location_switch.egg-info/SOURCES.txt'
+[2.792s] writing manifest file '../build/map_location_switch/map_location_switch.egg-info/SOURCES.txt'
+[2.793s] running build
+[2.794s] running build_py
+[2.796s] creating /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value
+[2.796s] copying test_value/test_value.py -> /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value
+[2.796s] copying test_value/__init__.py -> /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value
+[2.796s] creating /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch
+[2.798s] copying map_location_switch/map_location_switch.py -> /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch
+[2.798s] copying map_location_switch/__init__.py -> /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch
+[2.799s] running install
+[2.832s] running install_lib
+[2.894s] creating /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value
+[2.897s] copying /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value/test_value.py -> /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value
+[2.897s] copying /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value/__init__.py -> /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value
+[2.898s] creating /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch
+[2.898s] copying /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch/map_location_switch.py -> /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch
+[2.898s] copying /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch/__init__.py -> /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch
+[2.900s] byte-compiling /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value/test_value.py to test_value.cpython-310.pyc
+[2.907s] byte-compiling /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value/__init__.py to __init__.cpython-310.pyc
+[2.908s] byte-compiling /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch/map_location_switch.py to map_location_switch.cpython-310.pyc
+[2.919s] byte-compiling /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch/__init__.py to __init__.cpython-310.pyc
+[2.920s] running install_data
+[2.920s] creating /home/user/ros2_ws/src/install/map_location_switch/share/ament_index/resource_index/packages
+[2.920s] copying resource/map_location_switch -> /home/user/ros2_ws/src/install/map_location_switch/share/ament_index/resource_index/packages
+[2.920s] copying package.xml -> /home/user/ros2_ws/src/install/map_location_switch/share/map_location_switch
+[2.920s] running install_egg_info
+[3.001s] Copying ../build/map_location_switch/map_location_switch.egg-info to /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch-0.0.0-py3.10.egg-info
+[3.009s] running install_scripts
+[3.306s] Installing map_location_switch script to /home/user/ros2_ws/src/install/map_location_switch/lib/map_location_switch
+[3.307s] Installing test_value script to /home/user/ros2_ws/src/install/map_location_switch/lib/map_location_switch
+[3.308s] writing list of installed files to '/home/user/ros2_ws/src/build/map_location_switch/install.log'
+[3.445s] Invoked command in '/home/user/ros2_ws/src/map_location_switch-main' returned '0': PYTHONPATH=/home/user/ros2_ws/src/build/map_location_switch/prefix_override:/home/user/.espressif/python_env/idf5.4_py3.10_env/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages:${PYTHONPATH} /home/user/.espressif/python_env/idf5.4_py3.10_env/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/map_location_switch build --build-base /home/user/ros2_ws/src/build/map_location_switch/build install --record /home/user/ros2_ws/src/build/map_location_switch/install.log --single-version-externally-managed install_data

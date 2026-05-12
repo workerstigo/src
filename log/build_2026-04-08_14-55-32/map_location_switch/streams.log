@@ -1,0 +1,27 @@
+[1.527s] Invoking command in '/home/user/ros2_ws/src/map_location_switch-main': PYTHONPATH=/home/user/ros2_ws/src/build/map_location_switch/prefix_override:/home/user/.espressif/python_env/idf5.4_py3.10_env/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages:${PYTHONPATH} /home/user/.espressif/python_env/idf5.4_py3.10_env/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/map_location_switch build --build-base /home/user/ros2_ws/src/build/map_location_switch/build install --record /home/user/ros2_ws/src/build/map_location_switch/install.log --single-version-externally-managed install_data
+[1.947s] /home/user/.espressif/python_env/idf5.4_py3.10_env/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[1.947s]   warnings.warn(msg)
+[2.190s] running egg_info
+[2.218s] writing ../build/map_location_switch/map_location_switch.egg-info/PKG-INFO
+[2.219s] writing dependency_links to ../build/map_location_switch/map_location_switch.egg-info/dependency_links.txt
+[2.219s] writing entry points to ../build/map_location_switch/map_location_switch.egg-info/entry_points.txt
+[2.219s] writing requirements to ../build/map_location_switch/map_location_switch.egg-info/requires.txt
+[2.220s] writing top-level names to ../build/map_location_switch/map_location_switch.egg-info/top_level.txt
+[2.281s] reading manifest file '../build/map_location_switch/map_location_switch.egg-info/SOURCES.txt'
+[2.284s] writing manifest file '../build/map_location_switch/map_location_switch.egg-info/SOURCES.txt'
+[2.285s] running build
+[2.285s] running build_py
+[2.286s] copying map_location_switch/map_location_switch.py -> /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch
+[2.286s] running install
+[2.295s] running install_lib
+[2.322s] copying /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch/map_location_switch.py -> /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch
+[2.324s] byte-compiling /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch/map_location_switch.py to map_location_switch.cpython-310.pyc
+[2.328s] running install_data
+[2.329s] running install_egg_info
+[2.359s] removing '/home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch-0.0.0-py3.10.egg-info' (and everything under it)
+[2.360s] Copying ../build/map_location_switch/map_location_switch.egg-info to /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch-0.0.0-py3.10.egg-info
+[2.360s] running install_scripts
+[2.553s] Installing map_location_switch script to /home/user/ros2_ws/src/install/map_location_switch/lib/map_location_switch
+[2.553s] Installing test_value script to /home/user/ros2_ws/src/install/map_location_switch/lib/map_location_switch
+[2.553s] writing list of installed files to '/home/user/ros2_ws/src/build/map_location_switch/install.log'
+[2.664s] Invoked command in '/home/user/ros2_ws/src/map_location_switch-main' returned '0': PYTHONPATH=/home/user/ros2_ws/src/build/map_location_switch/prefix_override:/home/user/.espressif/python_env/idf5.4_py3.10_env/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages:${PYTHONPATH} /home/user/.espressif/python_env/idf5.4_py3.10_env/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../build/map_location_switch build --build-base /home/user/ros2_ws/src/build/map_location_switch/build install --record /home/user/ros2_ws/src/build/map_location_switch/install.log --single-version-externally-managed install_data

@@ -1,0 +1,3 @@
+[console_scripts]
+map_location_switch = map_location_switch.map_location_switch:main
+test_value = map_location_switch.test_value:main

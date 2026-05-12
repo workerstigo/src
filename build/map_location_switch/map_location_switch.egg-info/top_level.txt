@@ -1,0 +1,2 @@
+map_location_switch
+test_value

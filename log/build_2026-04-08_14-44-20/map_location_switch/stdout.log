@@ -1,0 +1,40 @@
+running egg_info
+creating ../build/map_location_switch/map_location_switch.egg-info
+writing ../build/map_location_switch/map_location_switch.egg-info/PKG-INFO
+writing dependency_links to ../build/map_location_switch/map_location_switch.egg-info/dependency_links.txt
+writing entry points to ../build/map_location_switch/map_location_switch.egg-info/entry_points.txt
+writing requirements to ../build/map_location_switch/map_location_switch.egg-info/requires.txt
+writing top-level names to ../build/map_location_switch/map_location_switch.egg-info/top_level.txt
+writing manifest file '../build/map_location_switch/map_location_switch.egg-info/SOURCES.txt'
+reading manifest file '../build/map_location_switch/map_location_switch.egg-info/SOURCES.txt'
+writing manifest file '../build/map_location_switch/map_location_switch.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value
+copying test_value/test_value.py -> /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value
+copying test_value/__init__.py -> /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value
+creating /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch
+copying map_location_switch/map_location_switch.py -> /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch
+copying map_location_switch/__init__.py -> /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch
+running install
+running install_lib
+creating /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value
+copying /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value/test_value.py -> /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value
+copying /home/user/ros2_ws/src/build/map_location_switch/build/lib/test_value/__init__.py -> /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value
+creating /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch
+copying /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch/map_location_switch.py -> /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch
+copying /home/user/ros2_ws/src/build/map_location_switch/build/lib/map_location_switch/__init__.py -> /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch
+byte-compiling /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value/test_value.py to test_value.cpython-310.pyc
+byte-compiling /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/test_value/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch/map_location_switch.py to map_location_switch.cpython-310.pyc
+byte-compiling /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/user/ros2_ws/src/install/map_location_switch/share/ament_index/resource_index/packages
+copying resource/map_location_switch -> /home/user/ros2_ws/src/install/map_location_switch/share/ament_index/resource_index/packages
+copying package.xml -> /home/user/ros2_ws/src/install/map_location_switch/share/map_location_switch
+running install_egg_info
+Copying ../build/map_location_switch/map_location_switch.egg-info to /home/user/ros2_ws/src/install/map_location_switch/lib/python3.10/site-packages/map_location_switch-0.0.0-py3.10.egg-info
+running install_scripts
+Installing map_location_switch script to /home/user/ros2_ws/src/install/map_location_switch/lib/map_location_switch
+Installing test_value script to /home/user/ros2_ws/src/install/map_location_switch/lib/map_location_switch
+writing list of installed files to '/home/user/ros2_ws/src/build/map_location_switch/install.log'
