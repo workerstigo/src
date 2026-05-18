@@ -5,14 +5,14 @@ const rclnodejs = require('rclnodejs');
 const i2c = require('i2c-bus');
 
 const STM32 = 0x3F;
-const DAC1  = 0x60;
-const DAC2  = 0x61;
+const DAC1 = 0x60;
+const DAC2 = 0x61;
 const I2C_BUS = 7;
 
 async function main() {
     await rclnodejs.init();
     const node = rclnodejs.createNode('i2c_bridge_js');
-    
+
     let bus;
     try {
         bus = i2c.openSync(I2C_BUS);
@@ -23,17 +23,50 @@ async function main() {
 
     function dacSet(addr, value) {
         if (!bus) return;
-        const high = (value >> 8) & 0x0F;
-        const low  = value & 0xFF;
-        bus.writeI2cBlockSync(addr, high, 1, Buffer.from([low]));
+        const buf = Buffer.from([
+            (value >> 8) & 0x0F,
+            value & 0xFF,
+        ]);
+        bus.i2cWriteSync(addr, buf.length, buf);
         node.getLogger().info(`DAC [0x${addr.toString(16).toUpperCase()}] set to ${value}`);
     }
 
     function motor(id, direction, intensity = 255) {
         if (!bus) return;
         const buf = Buffer.from([id.charCodeAt(0), direction, intensity]);
-        bus.writeI2cBlockSync(STM32, buf[0], 2, buf.slice(1));
+        bus.i2cWriteSync(STM32, buf.length, buf);
         node.getLogger().info(`Motor ${id} -> direction ${direction}, intensity ${intensity}`);
+    }
+
+    function syncMotors(leftDir, leftPwm, rightDir, rightPwm) {
+        if (!bus) return;
+        const SYNC_REG = 0x4D;
+        const buf = Buffer.from([
+            SYNC_REG,
+            leftDir,
+            leftPwm,
+            rightDir,
+            rightPwm,
+        ]);
+        bus.i2cWriteSync(STM32, buf.length, buf);
+    }
+
+    function speedToCommand(speed, maxSpeed, maxPwm, minPwm, deadband) {
+        if (Math.abs(speed) < deadband) {
+            return { dir: 0, pwm: 0 };
+        }
+
+        let pwm = Math.min(Math.max(Math.abs(speed) / maxSpeed * maxPwm, 0), maxPwm);
+        pwm = Math.floor(pwm);
+
+        if (pwm > 0 && pwm < minPwm) {
+            pwm = minPwm;
+        }
+
+        return {
+            dir: speed > 0 ? 1 : 2,
+            pwm,
+        };
     }
 
     // 1. String command (/i2c_cmd) - Legacy string parsing
@@ -41,7 +74,7 @@ async function main() {
         const cmdText = msg.data.trim();
         try {
             const args = cmdText.split(/\s+/);
-            const cmd  = args[0].toLowerCase();
+            const cmd = args[0].toLowerCase();
             if (cmd === 'dac1' || cmd === 'dac2') {
                 const addr = cmd === 'dac1' ? DAC1 : DAC2;
                 let val;
@@ -59,7 +92,8 @@ async function main() {
                 const reg = parseInt(args[2]);
                 const data = args.slice(3).map(x => parseInt(x));
                 if (!isNaN(addr) && bus) {
-                    bus.writeI2cBlockSync(addr, reg, data.length, Buffer.from(data));
+                    const buf = Buffer.concat([Buffer.from([reg]), Buffer.from(data)]);
+                    bus.i2cWriteSync(addr, buf.length, buf);
                     node.getLogger().info(`Raw write to 0x${addr.toString(16)}: [${data}]`);
                 }
             }
@@ -94,7 +128,8 @@ async function main() {
     try {
         node.createSubscription('i2c_interfaces/msg/I2cRaw', '/i2c_raw', (msg) => {
             if (!bus) return;
-            bus.writeI2cBlockSync(msg.address, msg.reg, msg.data.length, Buffer.from(msg.data));
+            const buf = Buffer.concat([Buffer.from([msg.reg]), Buffer.from(msg.data)]);
+            bus.i2cWriteSync(msg.address, buf.length, buf);
             node.getLogger().info(`Raw I2C write to 0x${msg.address.toString(16)}: [${msg.data}]`);
         });
         node.getLogger().info('Subscribed to /i2c_raw (i2c_interfaces/msg/I2cRaw)');
@@ -102,7 +137,39 @@ async function main() {
         node.getLogger().warn('Could not subscribe to /i2c_raw: ' + e.message);
     }
 
-    node.getLogger().info('I2C Bridge JS node started with multiple topics.');
+    // 5. Binary Sync Motor command (/i2c_cmd_bin)
+    node.createSubscription('std_msgs/msg/UInt8MultiArray', '/i2c_cmd_bin', (msg) => {
+        const data = msg.data;
+        if (data.length === 4) {
+            syncMotors(data[0], data[1], data[2], data[3]);
+        }
+    });
+
+    // 6. Navigation command (/cmd_vel)
+    node.createSubscription('geometry_msgs/msg/Twist', '/cmd_vel', { qos: 'qos_profile_sensor_data' }, (msg) => {
+        if (!bus) return;
+
+        const v = msg.linear.x;
+        const w = msg.angular.z;
+        const wheelSep = 0.16;
+        const maxSpeed = 0.5;
+        const maxPwm = 255;
+        const minPwm = 120;
+        const deadband = 0.01;
+
+        const leftSpeed = v - (w * wheelSep / 2.0);
+        const rightSpeed = v + (w * wheelSep / 2.0);
+        const left = speedToCommand(leftSpeed, maxSpeed, maxPwm, minPwm, deadband);
+        const right = speedToCommand(rightSpeed, maxSpeed, maxPwm, minPwm, deadband);
+
+        const bufA = Buffer.from([0x41, left.dir, left.pwm]);
+        bus.i2cWriteSync(STM32, bufA.length, bufA);
+
+        const bufB = Buffer.from([0x42, right.dir, right.pwm]);
+        bus.i2cWriteSync(STM32, bufB.length, bufB);
+    });
+
+    node.getLogger().info('I2C Bridge JS node started with multiple topics (including /cmd_vel).');
     rclnodejs.spin(node);
 }
 
