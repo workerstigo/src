@@ -155,7 +155,7 @@ async function main() {
         const maxSpeed = 0.5;
         const maxPwm = 255;
         const minPwm = 120;
-        const deadband = 0.01;
+        const deadband = 0.005; // Lowered to allow slow navigation adjustments
 
         const leftSpeed = v - (w * wheelSep / 2.0);
         const rightSpeed = v + (w * wheelSep / 2.0);
