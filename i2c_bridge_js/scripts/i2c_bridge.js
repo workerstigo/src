@@ -151,14 +151,22 @@ async function main() {
         }
     });
 
-    // 6. Navigation toggle (/nav_toggle)
+    // 6. Navigation and Control Mode toggles
     let isAutoNav = false;
+    let controlMode = 'Twist';
     let stopGuardTimer = null;  // 防護計時器：確保停止指令不會被後續訊息覆蓋
 
+    node.createSubscription('std_msgs/msg/String', '/control_mode', { qos: compatQos }, (msg) => {
+        controlMode = msg.data;
+        node.getLogger().info(`Control mode set to: ${controlMode}`);
+    });
+
     function forceStopMotors() {
-        node.getLogger().info('Force stopping motors (A=0, B=0).');
+        node.getLogger().info('Force stopping motors (A=0, B=0, DAC=2048).');
         motor('A', 0, 0);
         motor('B', 0, 0);
+        dacSet(DAC1, 2048);
+        dacSet(DAC2, 2048);
     }
 
     node.createSubscription('std_msgs/msg/Bool', '/nav_toggle', { qos: compatQos }, (msg) => {
@@ -199,19 +207,37 @@ async function main() {
         if (!bus) return;
         const v = msg.linear.x;
         const w = msg.angular.z;
-        const wheelSep = 0.3;
-        const maxSpeed = 0.5;
-        const maxPwm = 255;
-        const minPwm = 120;
-        const deadband = 0.005;
 
-        const leftSpeed = v - (w * wheelSep / 2.0);
-        const rightSpeed = v + (w * wheelSep / 2.0);
-        const left = speedToCommand(leftSpeed, maxSpeed, maxPwm, minPwm, deadband);
-        const right = speedToCommand(rightSpeed, maxSpeed, maxPwm, minPwm, deadband);
+        if (controlMode === 'DAC') {
+            let normLin = v / 0.5;
+            let normAng = w / 6.25;
 
-        motor('A', left.dir, left.pwm);
-        motor('B', right.dir, right.pwm);
+            let left = normLin - normAng;
+            let right = normLin + normAng;
+
+            left = Math.max(-1, Math.min(1, left));
+            right = Math.max(-1, Math.min(1, right));
+
+            const dac1Val = Math.round(2048 + left * 2047);
+            const dac2Val = Math.round(2048 + right * 2047);
+
+            dacSet(DAC1, dac1Val);
+            dacSet(DAC2, dac2Val);
+        } else {
+            const wheelSep = 0.3;
+            const maxSpeed = 0.5;
+            const maxPwm = 255;
+            const minPwm = 120;
+            const deadband = 0.005;
+
+            const leftSpeed = v - (w * wheelSep / 2.0);
+            const rightSpeed = v + (w * wheelSep / 2.0);
+            const left = speedToCommand(leftSpeed, maxSpeed, maxPwm, minPwm, deadband);
+            const right = speedToCommand(rightSpeed, maxSpeed, maxPwm, minPwm, deadband);
+
+            motor('A', left.dir, left.pwm);
+            motor('B', right.dir, right.pwm);
+        }
     }
 
     // 7. Manual command (/cmd_vel_manual)
@@ -221,7 +247,8 @@ async function main() {
     });
 
     // 8. Auto Navigation command (/cmd_vel)
-    node.createSubscription('geometry_msgs/msg/Twist', '/cmd_vel', { qos: compatQos }, (msg) => {
+    // Nav2 uses VOLATILE QoS, so we must use sensor_data (VOLATILE+BEST_EFFORT) here
+    node.createSubscription('geometry_msgs/msg/Twist', '/cmd_vel', { qos: 'qos_profile_sensor_data' }, (msg) => {
         if (!isAutoNav) return; // Ignore if auto nav is inactive
         // 防護期間內不處理 /cmd_vel，確保停止指令生效
         if (stopGuardTimer) return;
