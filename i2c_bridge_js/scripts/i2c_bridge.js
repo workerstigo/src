@@ -9,6 +9,12 @@ const DAC1 = 0x60;
 const DAC2 = 0x61;
 const I2C_BUS = 7;
 
+// QoS profile compatible with rosbridge (TRANSIENT_LOCAL + RELIABLE)
+// QoS constructor: (history, depth, reliability, durability)
+// KEEP_LAST=1, depth=10, RELIABLE=1, TRANSIENT_LOCAL=1
+const { QoS } = rclnodejs;
+const compatQos = new QoS(1, 10, 1, 1);
+
 async function main() {
     await rclnodejs.init();
     const node = rclnodejs.createNode('i2c_bridge_js');
@@ -70,7 +76,7 @@ async function main() {
     }
 
     // 1. String command (/i2c_cmd) - Legacy string parsing
-    node.createSubscription('std_msgs/msg/String', '/i2c_cmd', (msg) => {
+    node.createSubscription('std_msgs/msg/String', '/i2c_cmd', { qos: compatQos }, (msg) => {
         const cmdText = msg.data.trim();
         try {
             const args = cmdText.split(/\s+/);
@@ -138,38 +144,101 @@ async function main() {
     }
 
     // 5. Binary Sync Motor command (/i2c_cmd_bin)
-    node.createSubscription('std_msgs/msg/UInt8MultiArray', '/i2c_cmd_bin', (msg) => {
+    node.createSubscription('std_msgs/msg/UInt8MultiArray', '/i2c_cmd_bin', { qos: compatQos }, (msg) => {
         const data = msg.data;
         if (data.length === 4) {
             syncMotors(data[0], data[1], data[2], data[3]);
         }
     });
 
-    // 6. Navigation command (/cmd_vel)
-    node.createSubscription('geometry_msgs/msg/Twist', '/cmd_vel', { qos: 'qos_profile_sensor_data' }, (msg) => {
-        if (!bus) return;
+    // 6. Navigation toggle (/nav_toggle)
+    let isAutoNav = false;
+    let stopGuardTimer = null;  // 防護計時器：確保停止指令不會被後續訊息覆蓋
 
+    function forceStopMotors() {
+        node.getLogger().info('Force stopping motors (A=0, B=0).');
+        motor('A', 0, 0);
+        motor('B', 0, 0);
+    }
+
+    node.createSubscription('std_msgs/msg/Bool', '/nav_toggle', { qos: compatQos }, (msg) => {
+        const wasAuto = isAutoNav;
+        isAutoNav = msg.data;
+        node.getLogger().info(`Auto Navigation mode set to: ${isAutoNav}`);
+
+        // 清除舊的防護計時器
+        if (stopGuardTimer) {
+            clearInterval(stopGuardTimer);
+            stopGuardTimer = null;
+        }
+
+        // 自動導航剛被關閉 → 立即停止馬達，並持續發送停止指令 1 秒
+        if (wasAuto && !isAutoNav) {
+            node.getLogger().info('Auto nav cancelled — sending motor stop commands.');
+            forceStopMotors();
+
+            // 防護機制：每 50ms 持續發送停止指令，持續 1 秒
+            // 防止 Nav2 殘留的 /cmd_vel 訊息覆蓋停止指令
+            let guardCount = 0;
+            stopGuardTimer = setInterval(() => {
+                guardCount++;
+                forceStopMotors();
+                if (guardCount >= 20) {  // 50ms * 20 = 1 秒
+                    clearInterval(stopGuardTimer);
+                    stopGuardTimer = null;
+                    node.getLogger().info('Stop guard period ended.');
+                }
+            }, 50);
+        }
+    });
+
+    // /cmd_vel 超時看門狗：自動導航期間如果 /cmd_vel 超過 500ms 沒收到，自動停止馬達
+    let cmdVelTimeout = null;
+
+    function processTwist(msg) {
+        if (!bus) return;
         const v = msg.linear.x;
         const w = msg.angular.z;
-        const wheelSep = 0.16;
+        const wheelSep = 0.3;
         const maxSpeed = 0.5;
         const maxPwm = 255;
         const minPwm = 120;
-        const deadband = 0.005; // Lowered to allow slow navigation adjustments
+        const deadband = 0.005;
 
         const leftSpeed = v - (w * wheelSep / 2.0);
         const rightSpeed = v + (w * wheelSep / 2.0);
         const left = speedToCommand(leftSpeed, maxSpeed, maxPwm, minPwm, deadband);
         const right = speedToCommand(rightSpeed, maxSpeed, maxPwm, minPwm, deadband);
 
-        const bufA = Buffer.from([0x41, left.dir, left.pwm]);
-        bus.i2cWriteSync(STM32, bufA.length, bufA);
+        motor('A', left.dir, left.pwm);
+        motor('B', right.dir, right.pwm);
+    }
 
-        const bufB = Buffer.from([0x42, right.dir, right.pwm]);
-        bus.i2cWriteSync(STM32, bufB.length, bufB);
+    // 7. Manual command (/cmd_vel_manual)
+    node.createSubscription('geometry_msgs/msg/Twist', '/cmd_vel_manual', { qos: compatQos }, (msg) => {
+        if (isAutoNav) return; // Ignore if auto nav is active
+        processTwist(msg);
     });
 
-    node.getLogger().info('I2C Bridge JS node started with multiple topics (including /cmd_vel).');
+    // 8. Auto Navigation command (/cmd_vel)
+    node.createSubscription('geometry_msgs/msg/Twist', '/cmd_vel', { qos: compatQos }, (msg) => {
+        if (!isAutoNav) return; // Ignore if auto nav is inactive
+        // 防護期間內不處理 /cmd_vel，確保停止指令生效
+        if (stopGuardTimer) return;
+        processTwist(msg);
+
+        // 重設 /cmd_vel 超時看門狗
+        if (cmdVelTimeout) clearTimeout(cmdVelTimeout);
+        cmdVelTimeout = setTimeout(() => {
+            if (isAutoNav) {
+                node.getLogger().info('/cmd_vel timeout — no message for 500ms, stopping motors.');
+                forceStopMotors();
+            }
+            cmdVelTimeout = null;
+        }, 500);
+    });
+
+    node.getLogger().info('I2C Bridge JS node started with manual/auto control topics.');
     rclnodejs.spin(node);
 }
 
